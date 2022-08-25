@@ -1,20 +1,25 @@
 <header class="fixed-top">
-  Header
+
+  <span (click)="runToggle()">
+    <ng-content select=".tr-btn"></ng-content>
+  </span>
+  <ng-content select=".tr-header"></ng-content>
 </header>
-<main>
+
+<main [ngClass]="{'close-aside':isClose}">
   <div class="shadow position-fixed">
   </div>
   <aside>
     <div class="scroller">
-      Nav
+      <ng-content select=".tr-nav"></ng-content>
     </div>
   </aside>
   <div class="page">
     <div class="contents">
-      Content
     </div>
+
     <footer>
-      Footer
+      <ng-content select=".tr-footer"></ng-content>
     </footer>
   </div>
 </main>
