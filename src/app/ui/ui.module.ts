@@ -1,9 +1,8 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { DataSharingService } from "../DataSharingService";
-import { UiComponent } from "./ui.component";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { UiComponent } from './components/ui/ui.component';
+
 @NgModule({
-  providers: [DataSharingService],
   declarations: [UiComponent],
   imports: [CommonModule],
   exports: [UiComponent],
