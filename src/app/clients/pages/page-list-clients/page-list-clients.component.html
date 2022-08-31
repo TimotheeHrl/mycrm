@@ -1,0 +1,12 @@
+<app-template-full-width>
+    <p>page-list-clients works!</p>
+</app-template-full-width>
+<div>
+    <ul>
+        <li *ngFor="let client of clients">
+            <a [routerLink]="['/clients', client.id]">{{client.firstName}}</a>
+        </li>
+    </ul>
+
+
+</div>
