@@ -1,18 +1,13 @@
 <table class="table">
   <thead>
     <tr>
-      <th *ngFor="let header of headers" scope="col">{{header}}</th>
+      <th *ngFor="let header of headers" scope="col" let index=index; let isFirst=first;>{{header}}</th>
     </tr>
   </thead>
   <tbody>
 
-    <tr *ngFor="let item of collection">
-      <td>{{item.type}}</td>
-      <td>{{item.unitPrice}}</td>
-      <td>{{item.numberOfDay}}</td>
-      <td>{{item.label}}</td>
-      <td>{{item.status}}</td>
-      <td></td>
-    </tr>
+    <ng-content>
+
+    </ng-content>
   </tbody>
 </table>

@@ -5,6 +5,8 @@ import { BtnComponent } from './components/btn/btn.component';
 import { TemplateContainerComponent } from './components/template-container/template-container.component';
 import { TemplateFullWidthComponent } from './components/template-full-width/template-full-width.component';
 import { TableLightComponent } from './table-light/table-light.component';
+import { BtnAddComponent } from './components/btn-add/btn-add.component';
+import { BtnEditComponent } from './components/btn-edit/btn-edit.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +14,8 @@ import { TableLightComponent } from './table-light/table-light.component';
     TemplateContainerComponent,
     TableLightComponent,
     BtnComponent,
+    BtnAddComponent,
+    BtnEditComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
@@ -19,6 +23,8 @@ import { TableLightComponent } from './table-light/table-light.component';
     TemplateContainerComponent,
     TableLightComponent,
     BtnComponent,
+    BtnAddComponent,
+    BtnEditComponent,
   ],
 })
 export class TemplatesModule {}

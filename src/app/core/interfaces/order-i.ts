@@ -1,10 +1,11 @@
-import { StateOrder } from '../enums/state-order';
-
+import { StateOrder } from "../enums/state-order";
+import { customerI } from "../interfaces/customer-i";
 export interface OrderI {
   status: StateOrder;
-  unitPrice: StateOrder;
-  numberOfDay: string;
+  unitPrice: number;
+  numberOfDay: number;
   label: string;
   type: string;
   id: number;
+  customer: customerI;
 }

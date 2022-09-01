@@ -1,17 +1,16 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { Order } from "src/app/core/models/order";
+import { Customer } from "src/app/core/models/customer";
 import { environment } from "src/environments/environment";
-
 @Injectable({
   providedIn: "root",
 })
-export class OrdersService {
+export class ClientsService {
   private token = environment.token;
 
   private urlApi = environment.urlApi;
-  public orders$: Observable<Order[]>;
+  public customers$: Observable<Customer[]>;
   constructor(private httpClient: HttpClient) {
     const headers = new Headers({
       "Content-Type": "application/json",
@@ -21,8 +20,8 @@ export class OrdersService {
       "Content-Type": "application/json",
       Authorization: "Bearer " + this.token,
     }); //JSON.parse(localStorage.getItem('mpManagerToken')
-    this.orders$ = this.httpClient.get<Order[]>(
-      `${this.urlApi}/api/orders/all`,
+    this.customers$ = this.httpClient.get<Customer[]>(
+      `${this.urlApi}/api/customers/all`,
       { headers: reqHeader }
     );
   }
