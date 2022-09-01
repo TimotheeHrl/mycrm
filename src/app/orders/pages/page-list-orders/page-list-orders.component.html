@@ -1,1 +1,8 @@
-<p>page-list-orders works!</p>
+<app-template-full-width [title]="myTitle">
+  <!-- <button (click)="changeTitle();">change title</button> -->
+  <app-btn [label]="myLabel">
+    <ng-content></ng-content>
+  </app-btn>
+  <app-table-light [headers]="headers" [collection]="collection"></app-table-light>
+
+</app-template-full-width>

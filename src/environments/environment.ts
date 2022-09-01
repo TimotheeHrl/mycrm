@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://localhost:3000",
-  urlApiCrm: "http://localhost:8080/api",
+  urlApi: 'http://localhost:8080',
+  token:
+    'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY2MTk0NTQ0NiwiZXhwIjoxNjYyMDMxODQ2fQ.aH3zeXAHPm-CrCSbERMYSgkcuvD-mHqc_YrYGdEwOFXPHWnFmxE0uwwB_ynvAw5JgM__N5UyBIEukv4k7kuwgQ',
 };
 
 /*

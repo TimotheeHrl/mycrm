@@ -1,41 +1,31 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { PageSignInComponent } from "./login/pages/page-sign-in/page-sign-in.component";
+import { NgModule } from '@angular/core';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: "", redirectTo: "sign-in", pathMatch: "full" },
-  { path: "sign-in", component: PageSignInComponent },
-
+  { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
   {
-    path: "orders",
+    path: 'orders',
     loadChildren: () =>
-      import("./orders/orders.module").then((m) => m.OrdersModule),
-  }, // lazy loading
-
-  {
-    path: "clients",
-    loadChildren: () =>
-      import("./clients/clients.module").then((m) => m.ClientsModule),
+      import('./orders/orders.module').then((m) => m.OrdersModule),
   },
   {
-    path: "login",
+    path: 'clients',
     loadChildren: () =>
-      import("./login/login-routing.module").then((m) => m.LoginRoutingModule),
+      import('./clients/clients.module').then((m) => m.ClientsModule),
   },
   {
-    path: "path-not-found",
-
+    path: '**',
     loadChildren: () =>
-      import("./page-not-found/page-not-found.module").then(
+      import('./page-not-found/page-not-found.module').then(
         (m) => m.PageNotFoundModule
       ),
   },
 ];
-//snipets : lazy   aroute
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-
+  imports: [
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
