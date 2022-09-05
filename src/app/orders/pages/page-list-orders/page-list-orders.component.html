@@ -14,8 +14,14 @@
       <td>{{item.unitPrice | currency}}</td>
 
       <td>{{item.numberOfDay}}</td>
+
       <td>{{ item.numberOfDay|total : item.numberOfDay : item.tva }}</td>
-      <td>{{item.status}}</td>
+
+      <select>
+        <option *ngFor="let status of stateOrder" [value]="item.status" [selected]="item.status === status">{{status}}
+        </option>
+      </select>
+
 
     </tr>
   </app-table-light>

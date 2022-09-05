@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { StateOrder } from "src/app/core/enums/state-order";
 import { OrderI } from "src/app/core/interfaces/order-i";
 import { OrdersService } from "../../services/orders.service";
 @Component({
@@ -11,6 +12,7 @@ export class PageListOrdersComponent implements OnInit {
   public myLabel: string;
   public collection!: OrderI[];
   public headers!: string[];
+  public stateOrder!: string[];
 
   constructor(private ordersService: OrdersService) {
     this.myTitle = "List of orders";
@@ -23,12 +25,12 @@ export class PageListOrdersComponent implements OnInit {
       "label",
       "unitPrice",
       "number of days",
+      "total TTC",
       "status",
     ];
+    this.stateOrder = Object.values(StateOrder);
   }
-
   ngOnInit(): void {}
-
   public changeTitle(): void {
     this.myTitle = "le titre a changé";
   }
