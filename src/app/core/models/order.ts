@@ -5,6 +5,7 @@ export class Order implements OrderI {
   status!: StateOrder.OPTION;
   unitPrice!: number;
   numberOfDay!: number;
+  tva!: number;
   label!: string;
   type!: string;
   id!: number;

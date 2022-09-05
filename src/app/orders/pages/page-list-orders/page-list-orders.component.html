@@ -6,13 +6,15 @@
   <app-table-light [headers]="headers" [collection]="collection">
     <tr *ngFor="let item of collection">
 
-      <td>{{item.customer.firstName}}</td>
+      <td>{{item.customer.firstName }}</td>
 
-      <td>{{item.type}}</td>
+      <td>{{item.type | uppercase}}</td>
       <td>{{item.label}}</td>
 
-      <td>{{item.unitPrice}}</td>
+      <td>{{item.unitPrice | currency}}</td>
+
       <td>{{item.numberOfDay}}</td>
+      <td>{{ item.numberOfDay|total : item.numberOfDay : item.tva }}</td>
       <td>{{item.status}}</td>
 
     </tr>

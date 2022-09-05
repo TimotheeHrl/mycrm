@@ -6,9 +6,9 @@ export class Customer implements customerI {
   city!: string;
   company!: string;
   country!: string;
-  firstname!: string;
+  firstName!: string;
   id!: number;
-  lastname!: string;
+  lastName!: string;
   mail!: string;
   orders!: OrderI[];
   password!: string;

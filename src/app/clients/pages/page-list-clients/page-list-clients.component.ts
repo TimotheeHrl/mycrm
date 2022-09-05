@@ -20,12 +20,11 @@ export class PageListClientsComponent implements OnInit {
     );
     this.clientsService.customers$.subscribe((data) => console.log(data));
     this.headers = [
-      "firstname",
-      "lastname",
+      "firstName",
+      "lastName",
       "email",
       "phone",
       "company",
-      "status",
       "orders",
     ];
   }

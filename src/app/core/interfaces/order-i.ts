@@ -4,6 +4,7 @@ export interface OrderI {
   status: StateOrder;
   unitPrice: number;
   numberOfDay: number;
+  tva: number;
   label: string;
   type: string;
   id: number;
