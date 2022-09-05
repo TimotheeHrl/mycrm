@@ -17,8 +17,8 @@
 
       <td>{{ item.numberOfDay|total : item.numberOfDay : item.tva }}</td>
 
-      <select>
-        <option *ngFor="let status of stateOrder" [value]="item.status" [selected]="item.status === status">{{status}}
+      <select (change)="changeStatus(item, $event)">
+        <option *ngFor="let status of stateOrder" [value]="status" [selected]="item.status === status">{{status}}
         </option>
       </select>
 

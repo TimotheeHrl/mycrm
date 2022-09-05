@@ -34,4 +34,10 @@ export class PageListOrdersComponent implements OnInit {
   public changeTitle(): void {
     this.myTitle = "le titre a changé";
   }
+  public changeStatus(item: OrderI, event: any): void {
+    const newState = event.target.value;
+    this.ordersService.changeState(item, newState).subscribe((data) => {
+      Object.assign(item, data);
+    });
+  }
 }

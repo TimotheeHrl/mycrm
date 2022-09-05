@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://localhost:8080",
+  urlApi: "http://localhost:4200",
   token:
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmEiLCJpYXQiOjE2NjIzNjQzOTIsImV4cCI6MTY2MjQ1MDc5Mn0.qRV9o4Yh9l709pStjy6WNCoWCsJEEKokRcLb8CwTxokkvEyaRg9Zm5zNaO0aEwE5k_sdhwCXuO4dIIhWGCWGOQ",
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmEiLCJpYXQiOjE2NjIzODU4MzMsImV4cCI6MTY2MjQ3MjIzM30.kgcdsfwR6Q3v57bbNUP498WShn8pObmBO8CBe6m71fQSxtu3uHqJ6p2XCdhvCpporAEFvAvjPpc4gq69MvGpew",
 };
 
 /*

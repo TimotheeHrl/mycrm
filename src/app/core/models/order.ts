@@ -2,7 +2,7 @@ import { StateOrder } from "../enums/state-order";
 import { customerI } from "../interfaces/customer-i";
 import { OrderI } from "../interfaces/order-i";
 export class Order implements OrderI {
-  status!: StateOrder.OPTION;
+  status!: StateOrder;
   unitPrice!: number;
   numberOfDay!: number;
   tva!: number;
