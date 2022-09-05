@@ -14,18 +14,15 @@ export class OrdersService {
   private urlApi = environment.urlApi;
   public order$ = new Observable<Order>();
   public orders$: Observable<Order[]>;
+  private headersA!: HttpHeaders;
   constructor(private httpClient: HttpClient) {
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${this.token}`,
-    });
-    var reqHeader = new HttpHeaders({
+    this.headersA = new HttpHeaders({
       "Content-Type": "application/json",
       Authorization: "Bearer " + this.token,
     }); //JSON.parse(localStorage.getItem('mpManagerToken')
     this.orders$ = this.httpClient.get<Order[]>(
       `${this.urlApi}/api/orders/all`,
-      { headers: reqHeader }
+      { headers: this.headersA }
     );
   }
   public changeState(item: Order, state: StateOrder): Observable<Order> {
@@ -35,14 +32,10 @@ export class OrdersService {
   }
 
   public update(item: Order): Observable<Order> {
-    var reqHeader = new HttpHeaders({
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + this.token,
-    });
     return this.httpClient.put<Order>(
       `${this.urlApi}/api/orders/update/${item.id}`,
       item,
-      { headers: reqHeader }
+      { headers: this.headersA }
     );
   }
 }

@@ -23,10 +23,19 @@ export class PageListClientsComponent implements OnInit {
       "firstName",
       "lastName",
       "email",
-      "phone",
       "company",
-      "orders",
+      "company",
+      "actif",
     ];
+  }
+
+  public optionsTrueFalse = [true, false];
+
+  public changeActive(customer: customerI, event: any): void {
+    const newState = event.target.value;
+    this.clientsService.changeActive(customer, newState).subscribe((data) => {
+      Object.assign(customer, data);
+    });
   }
   ngOnInit(): void {}
 }

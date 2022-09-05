@@ -8,21 +8,35 @@ import { environment } from "src/environments/environment";
 })
 export class ClientsService {
   private token = environment.token;
+  private headersA!: HttpHeaders;
 
   private urlApi = environment.urlApi;
   public customers$: Observable<Customer[]>;
   constructor(private httpClient: HttpClient) {
-    const headers = new Headers({
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${this.token}`,
-    });
-    var reqHeader = new HttpHeaders({
+    this.headersA = new HttpHeaders({
       "Content-Type": "application/json",
       Authorization: "Bearer " + this.token,
-    }); //JSON.parse(localStorage.getItem('mpManagerToken')
+    });
+
     this.customers$ = this.httpClient.get<Customer[]>(
       `${this.urlApi}/api/customers/all`,
-      { headers: reqHeader }
+      { headers: this.headersA }
+    );
+  }
+
+  public changeActive(
+    customer: Customer,
+    state: boolean
+  ): Observable<Customer> {
+    const obj = new Customer(customer);
+    obj.active = state;
+    return this.update(obj);
+  }
+  private update(obj: Customer): Observable<Customer> {
+    return this.httpClient.put<Customer>(
+      `${this.urlApi}/api/customers/update/${obj.id}`,
+      obj,
+      { headers: this.headersA }
     );
   }
 }

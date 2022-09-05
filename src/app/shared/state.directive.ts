@@ -1,16 +1,14 @@
-import { Directive, HostBinding, Input, OnChanges } from "@angular/core";
+import { Directive, HostBinding, Input } from "@angular/core";
 
 @Directive({
   selector: "[appState]",
 })
-export class StateDirective implements OnChanges {
-  @Input() public appState!: string;
-  @HostBinding("class") public tdClassName!: string;
-
+export class StateDirective {
+  @Input() appState!: string;
+  @HostBinding("class") tdClassName!: string;
   constructor() {}
-
-  ngOnChanges(): void {
-    console.log(this.appState);
+  ngOnChange() {
     this.tdClassName = `state-${this.appState.toLowerCase()}`;
+    console.log(this.appState);
   }
 }
