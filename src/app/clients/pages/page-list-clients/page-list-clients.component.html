@@ -15,10 +15,11 @@
             <td>{{item.phone}}</td>
             <td>{{item.company}}</td>
 
-            <td [appTrueFalseState]="item.active">
+            <td>
                 <select (change)="changeActive(item, $event)">
-                    <option *ngFor="let isTrueOrFalse of optionsTrueFalse" [value]="isTrueOrFalse"
-                        [selected]="item.active === isTrueOrFalse">{{isTrueOrFalse}}
+                    <option *ngFor="let option of optionsTrueFalse" [value]="item.active"
+                        [selected]="item.active === option">
+                        {{option}}
                     </option>
                 </select>
             </td>

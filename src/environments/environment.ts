@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  urlApi: "http://localhost:4200",
+  urlApi: "http://localhost:8080",
   token:
-    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmEiLCJpYXQiOjE2NjIzODU4MzMsImV4cCI6MTY2MjQ3MjIzM30.kgcdsfwR6Q3v57bbNUP498WShn8pObmBO8CBe6m71fQSxtu3uHqJ6p2XCdhvCpporAEFvAvjPpc4gq69MvGpew",
+    "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbmEiLCJpYXQiOjE2NjI0NTA4NjUsImV4cCI6MTY2MjUzNzI2NX0.EqvhMJty0wrjMXuBXiFzD1hfTwreIxcXQFmIOVw0IhGLfFji2kpiDdh2oh0a_zlyq58BOZ_Sg54qVqHmQ-M1Tg",
 };
 
 /*
@@ -16,4 +16,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
+import "zone.js/plugins/zone-error"; // Included with Angular CLI.

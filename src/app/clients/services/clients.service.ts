@@ -32,7 +32,9 @@ export class ClientsService {
     obj.active = state;
     return this.update(obj);
   }
+
   private update(obj: Customer): Observable<Customer> {
+    console.log(obj);
     return this.httpClient.put<Customer>(
       `${this.urlApi}/api/customers/update/${obj.id}`,
       obj,

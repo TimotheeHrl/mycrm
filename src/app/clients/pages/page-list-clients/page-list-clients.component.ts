@@ -12,6 +12,8 @@ export class PageListClientsComponent implements OnInit {
   public collection!: customerI[];
   public headers!: string[];
 
+  public optionsTrueFalse = [true, false];
+
   constructor(private clientsService: ClientsService) {
     this.myTitle = "List of Clients";
     this.myLabel = "Hello World Client";
@@ -29,10 +31,9 @@ export class PageListClientsComponent implements OnInit {
     ];
   }
 
-  public optionsTrueFalse = [true, false];
-
   public changeActive(customer: customerI, event: any): void {
     const newState = event.target.value;
+    console.log(newState);
     this.clientsService.changeActive(customer, newState).subscribe((data) => {
       Object.assign(customer, data);
     });

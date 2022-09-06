@@ -11,9 +11,9 @@
     }
 }
 
-.state-true{
-    background: greenyellow;
+.table-secondary{
+    background: var(--app-error);
   }
-.state-false{
-    background: red;
+  .state-false{
+    background: var(--app-warning);
   }
