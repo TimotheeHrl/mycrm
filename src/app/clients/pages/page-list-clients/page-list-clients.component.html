@@ -4,7 +4,7 @@
         <ng-content></ng-content>
     </app-btn>
     <app-table-light [headers]="headers" [collection]="collection">
-        <tr id="eee" *ngFor="let item of collection">
+        <tr id="eee" *ngFor="let item of collection" [ngClass]="{'table-secondary' : !item.active}">
 
             <td>{{item.firstName}}</td>
 
@@ -15,14 +15,7 @@
             <td>{{item.phone}}</td>
             <td>{{item.company}}</td>
 
-            <td>
-                <select (change)="changeActive(item, $event)">
-                    <option *ngFor="let option of optionsTrueFalse" [value]="item.active"
-                        [selected]="item.active === option">
-                        {{option}}
-                    </option>
-                </select>
-            </td>
+            <td>{{ item.active ? 'inactif' : 'actif' }}</td>
         </tr>
     </app-table-light>
     <app-btn-add></app-btn-add>

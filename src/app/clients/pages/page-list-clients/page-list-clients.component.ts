@@ -20,6 +20,7 @@ export class PageListClientsComponent implements OnInit {
     this.clientsService.customers$.subscribe(
       (data) => (this.collection = data)
     );
+    this.clientsService.customers$.subscribe((data) => console.log(data));
     this.headers = [
       "firstName",
       "lastName",
