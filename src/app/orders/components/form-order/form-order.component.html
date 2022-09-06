@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="typePresta">type</label>
         <input type="text" class="form-control" id="typePresta" formControlName="type">
@@ -6,8 +6,13 @@
 
     <div class="form-group">
         <label for="customer">customer</label>
-        <input type="text" class="form-control" id="customer" formControlName="customer">
+        <select class="form-control" id="customer" formControlName="customer">
+            <option *ngFor="let customer of collection" [ngValue]="customer">{{customer.firstName}}{{customer.lastName}}
+            </option>
+        </select>
     </div>
+
+
 
     <div class="form-group">
         <label for="numberOfDay">numberOfDay</label>

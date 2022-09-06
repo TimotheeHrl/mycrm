@@ -1,6 +1,6 @@
 import { StateOrder } from "../enums/state-order";
-import { customerI } from "../interfaces/customer-i";
 import { OrderI } from "../interfaces/order-i";
+import { Customer } from "./customer";
 export class Order implements OrderI {
   status!: StateOrder;
   unitPrice!: number;
@@ -9,7 +9,7 @@ export class Order implements OrderI {
   label!: string;
   type!: string;
   id!: number;
-  customer!: customerI;
+  customer!: Customer;
   constructor(obj?: Partial<Order>) {
     if (obj) {
       Object.assign(this, obj);

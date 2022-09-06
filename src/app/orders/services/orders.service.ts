@@ -38,4 +38,10 @@ export class OrdersService {
       { headers: this.headersA }
     );
   }
+
+  public add(item: Order): Observable<Order> {
+    return this.httpClient.post<Order>(`${this.urlApi}/api/orders/add`, item, {
+      headers: this.headersA,
+    });
+  }
 }
