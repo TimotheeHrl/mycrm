@@ -41,4 +41,12 @@ export class ClientsService {
       { headers: this.headersA }
     );
   }
+
+  public add(customer: Customer): Observable<Customer> {
+    return this.httpClient.post<Customer>(
+      `${this.urlApi}/api/customers/add`,
+      customer,
+      { headers: this.headersA }
+    );
+  }
 }

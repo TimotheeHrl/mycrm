@@ -43,7 +43,4 @@ export class FormOrderComponent implements OnInit {
 
     this.formSubmited.emit(this.form.value);
   }
-  public log(): void {
-    console.log(this.form.value);
-  }
 }

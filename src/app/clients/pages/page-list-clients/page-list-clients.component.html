@@ -6,9 +6,9 @@
     <app-table-light [headers]="headers" [collection]="collection">
         <tr id="eee" *ngFor="let item of collection" [ngClass]="{'table-secondary' : !item.active}">
 
-            <td>{{item.firstName}}</td>
+            <td>{{item.firstname}}</td>
 
-            <td>{{item.lastName}}</td>
+            <td>{{item.lastname}}</td>
 
             <td>{{item.mail}}</td>
 

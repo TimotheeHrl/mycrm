@@ -6,9 +6,9 @@ export interface customerI {
   city: string;
   company: string;
   country: string;
-  firstName: string;
+  firstname: string;
   id: number;
-  lastName: string;
+  lastname: string;
   mail: string;
   orders: OrderI[];
   password: string;
