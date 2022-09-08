@@ -26,8 +26,12 @@
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@ng-bootstrap/ng-bootstrap": "^13.0.0",
     "@popperjs/core": "^2.10.2",
+    "@stomp/rx-stomp": "^1.1.4",
+    "@stomp/stompjs": "^6.1.2",
     "bootstrap": "^5.2.0",
+    "ngx-socket-io": "^4.3.0",
     "rxjs": "~7.5.0",
+    "stompjs": "^2.3.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
   },
