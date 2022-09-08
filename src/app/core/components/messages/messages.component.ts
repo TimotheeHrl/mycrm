@@ -1,8 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { Message } from "@stomp/stompjs";
 import { Subscription } from "rxjs";
-import { Message as ChatMessage } from "../../models/message";
+import { MessageI as ChatMessage } from "../../interfaces/message-i";
 import { RxStompService } from "../../stomp/rx-stomp.service";
+
 @Component({
   selector: "app-messages",
   templateUrl: "./messages.component.html",
