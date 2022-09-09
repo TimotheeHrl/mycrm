@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ClientsService } from "src/app/clients/services/clients.service";
 import { StateOrder } from "src/app/core/enums/state-order";
 import { Customer } from "src/app/core/models/customer";
@@ -28,17 +28,33 @@ export class FormOrderComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      type: [this.init.type],
-      customer: [this.init.customer],
-      label: [this.init.label],
-      numberOfDay: [this.init.numberOfDay],
-      unitPrice: [this.init.unitPrice],
-      status: [this.init.status],
-      tva: [this.init.tva],
+      type: [
+        this.init.type,
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(100),
+      ],
+      customer: [this.init.customer, Validators.required],
+      label: [this.init.label, Validators.required],
+      numberOfDay: [
+        this.init.numberOfDay,
+        Validators.compose([Validators.required, Validators.min(1)]),
+      ],
+      unitPrice: [
+        this.init.unitPrice,
+        [Validators.required, Validators.min(1)],
+      ],
+      status: [this.init.status, Validators.required],
+      tva: [this.init.tva, Validators.required],
       id: [this.init.id],
     });
   }
   public onSubmit(): void {
+    let indexCustomer = this.collection.findIndex(
+      (item) => item.id === this.form.get("customer")?.value
+    );
+    this.form.controls["customer"].setValue(this.collection[indexCustomer]);
+
     console.log(this.form.value);
 
     this.formSubmited.emit(this.form.value);

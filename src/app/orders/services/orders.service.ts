@@ -4,15 +4,13 @@ import { Observable } from "rxjs";
 import { StateOrder } from "src/app/core/enums/state-order";
 import { Order } from "src/app/core/models/order";
 import { environment } from "src/environments/environment";
-
 @Injectable({
   providedIn: "root",
 })
 export class OrdersService {
   private token = environment.token;
-
   private urlApi = environment.urlApi;
-  public order$ = new Observable<Order>();
+  public order$!: Observable<Order>;
   public orders$: Observable<Order[]>;
   private headersA!: HttpHeaders;
   constructor(private httpClient: HttpClient) {
@@ -43,5 +41,20 @@ export class OrdersService {
     return this.httpClient.post<Order>(`${this.urlApi}/api/orders/add`, item, {
       headers: this.headersA,
     });
+  }
+  public delete(id: number): Observable<Order> {
+    return this.httpClient.delete<Order>(
+      `${this.urlApi}/api/orders/delete/${id}`,
+      { headers: this.headersA }
+    );
+  }
+  public get(id: number): Observable<Order> {
+    this.order$ = this.httpClient.get<Order>(
+      `${this.urlApi}/api/orders/${id}`,
+      { headers: this.headersA }
+    );
+    console.log(this.order$);
+
+    return this.order$;
   }
 }

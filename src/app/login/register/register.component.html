@@ -1,0 +1,20 @@
+<div class="register-container">
+    <div class="content">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <h2>Register</h2>
+            <div>
+                <div class="flex-column">
+                    <label for="email">Email</label>
+                    <input formControlName="email" type="text">
+                </div>
+                <div class="flex-column">
+                    <label for="password">Password</label>
+                    <input formControlName="password" type="password">
+                </div>
+            </div>
+            <div class="flex-column">
+                <button class="reg-btn" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</div>

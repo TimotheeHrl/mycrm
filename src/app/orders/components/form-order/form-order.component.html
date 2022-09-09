@@ -1,19 +1,19 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-group">
-        <label for="typePresta">type</label>
-        <input type="text" class="form-control" id="typePresta" formControlName="type">
+        <label for="type">type</label>
+        <input type="text" class="form-control" id="type" formControlName="type">
+        <div class="alert alert-danger" *ngIf="form.controls['type'].invalid && form.controls['type'].touched">
+            champ invalide
+        </div>
     </div>
-
     <div class="form-group">
         <label for="customer">customer</label>
         <select class="form-control" id="customer" formControlName="customer">
-            <option *ngFor="let customer of collection" [ngValue]="customer">{{customer.firstname}}{{customer.lastname}}
+            <option *ngFor="let customer of collection" [ngValue]="customer">
+                {{customer.firstname}}{{customer.lastname}}
             </option>
         </select>
     </div>
-
-
-
     <div class="form-group">
         <label for="numberOfDay">numberOfDay</label>
         <input type="number" class="form-control" id="numberOfDay " formControlName="numberOfDay">
@@ -45,5 +45,5 @@
         <input type="text" id="type" class="form-control" formControlName="type">
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" [disabled]="this.form.invalid" class="btn btn-primary">Submit</button>
 </form>

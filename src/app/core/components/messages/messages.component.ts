@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Message } from "@stomp/stompjs";
+import { IMessage } from "@stomp/stompjs";
 import { Subscription } from "rxjs";
 import { MessageI as ChatMessage } from "../../interfaces/message-i";
 import { RxStompService } from "../../stomp/rx-stomp.service";
@@ -10,7 +10,7 @@ import { RxStompService } from "../../stomp/rx-stomp.service";
   styleUrls: ["./messages.component.css"],
 })
 export class MessagesComponent implements OnInit, OnDestroy {
-  receivedMessages: string[] = [];
+  receivedMessages: ChatMessage[] = [];
   // @ts-ignore, to suppress warning related to being undefined
   private topicSubscription: Subscription;
 
@@ -19,8 +19,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.topicSubscription = this.rxStompService
       .watch("/chat/messages")
-      .subscribe((message: Message) => {
-        this.receivedMessages.push(message.body);
+      .subscribe((message: IMessage) => {
+        const chatMessage: ChatMessage = JSON.parse(message.body);
+        this.receivedMessages.push(chatMessage);
       });
   }
 

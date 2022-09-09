@@ -40,4 +40,13 @@ export class PageListOrdersComponent implements OnInit {
       Object.assign(item, data);
     });
   }
+  public delete(id: number): void {
+    this.ordersService.delete(id).subscribe((data) => {
+      this.collection = this.collection.filter((item) => item.id !== id);
+    });
+  }
+  public edit(id: number): void {
+    //redirect to edit page
+    location.href = "/orders/edit?id=" + id;
+  }
 }

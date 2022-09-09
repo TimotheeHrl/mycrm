@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { Customer } from "src/app/core/models/customer";
 import { environment } from "src/environments/environment";
 @Injectable({
@@ -12,6 +12,8 @@ export class ClientsService {
 
   private urlApi = environment.urlApi;
   public customers$: Observable<Customer[]>;
+  public customerBehavior$!: BehaviorSubject<Customer>;
+
   constructor(private httpClient: HttpClient) {
     this.headersA = new HttpHeaders({
       "Content-Type": "application/json",
@@ -48,5 +50,21 @@ export class ClientsService {
       customer,
       { headers: this.headersA }
     );
+  }
+  public delete(id: number): Observable<Customer> {
+    return this.httpClient.delete<Customer>(
+      `${this.urlApi}/api/customers/delete/${id}`,
+      { headers: this.headersA }
+    );
+  }
+  public get(id: number): BehaviorSubject<Customer> {
+    this.httpClient
+      .get<Customer>(`${this.urlApi}/api/customers/${id}`, {
+        headers: this.headersA,
+      })
+      .subscribe((data) => {
+        this.customerBehavior$.next(data);
+      });
+    return this.customerBehavior$;
   }
 }

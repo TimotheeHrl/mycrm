@@ -24,7 +24,7 @@ export class PageListClientsComponent implements OnInit {
     this.headers = [
       "firstname",
       "lastname",
-      "email",
+      "mail",
       "company",
       "company",
       "actif",

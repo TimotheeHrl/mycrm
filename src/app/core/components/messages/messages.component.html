@@ -6,7 +6,7 @@
   <ol>
     <!-- we will use Angular binding to populate list of messages -->
     <li class="message" *ngFor="let message of receivedMessages">
-      {{ message}}
+      from {{message.username}} : {{ message.text}}
     </li>
   </ol>
 </div>
