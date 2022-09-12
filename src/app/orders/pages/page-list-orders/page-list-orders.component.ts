@@ -41,9 +41,7 @@ export class PageListOrdersComponent implements OnInit {
     });
   }
   public delete(id: number): void {
-    this.ordersService.delete(id).subscribe((data) => {
-      this.collection = this.collection.filter((item) => item.id !== id);
-    });
+    this.ordersService.delete(id).subscribe();
   }
   public edit(id: number): void {
     //redirect to edit page

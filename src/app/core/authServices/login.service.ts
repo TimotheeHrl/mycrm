@@ -40,10 +40,8 @@ export class LoginService {
   }
 
   public logOut() {
-    document.cookie = "token";
-    localStorage.removeItem("id");
-    localStorage.removeItem("username");
-    localStorage.removeItem("email");
+    localStorage.clear();
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     this.router.navigate(["sign-in"]);
   }
 
@@ -56,15 +54,17 @@ export class LoginService {
 
     for (let i: number = 0; i < caLen; i += 1) {
       c = ca[i].replace(/^\s+/g, "");
+      console.log(c);
       if (c.indexOf(cookieName) == 0) {
+        console.log(c.substring(cookieName.length, c.length));
         return c.substring(cookieName.length, c.length);
       }
     }
     return "";
   }
   getToken() {
-    const cookie = this.getCookie("token");
-    console.log(cookie);
-    return cookie;
+    const token = this.getCookie("token");
+    console.log(token);
+    return token;
   }
 }
