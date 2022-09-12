@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { VersionService } from "../../services/version.service";
-
+import { LoginService } from "../../authServices/login.service";
 @Component({
   selector: "app-nav",
   templateUrl: "./nav.component.html",
   styleUrls: ["./nav.component.scss"],
 })
 export class NavComponent implements OnInit {
-  constructor(private versionService: VersionService) {}
-
+  constructor(private loginService: LoginService) {}
+  logout() {
+    this.loginService.logOut();
+  }
   ngOnInit(): void {}
 }

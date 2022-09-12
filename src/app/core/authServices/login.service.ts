@@ -35,17 +35,16 @@ export class LoginService {
     });
 
   loggedIn() {
-    const cookie = document.getElementById("token");
-    return !!cookie?.textContent;
+    const cookie = this.getCookie("token");
+    return !!cookie;
   }
 
-  logOut() {
-    const cookie = document.getElementById("token");
-    cookie?.remove();
+  public logOut() {
+    document.cookie = "token";
     localStorage.removeItem("id");
     localStorage.removeItem("username");
     localStorage.removeItem("email");
-    this.router.navigate(["signin"]);
+    this.router.navigate(["sign-in"]);
   }
 
   public getCookie(name: string) {

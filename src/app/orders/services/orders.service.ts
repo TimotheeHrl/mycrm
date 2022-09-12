@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { StateOrder } from "src/app/core/enums/state-order";
@@ -8,11 +8,9 @@ import { environment } from "src/environments/environment";
   providedIn: "root",
 })
 export class OrdersService {
-  private token = environment.token;
   private urlApi = environment.urlApi;
   public order$!: Observable<Order>;
   public orders$: Observable<Order[]>;
-  private headersA!: HttpHeaders;
   constructor(private httpClient: HttpClient) {
     this.orders$ = this.httpClient.get<Order[]>(
       `${this.urlApi}/api/orders/all`
