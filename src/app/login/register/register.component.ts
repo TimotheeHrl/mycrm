@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
       email: new FormControl("", Validators.required),
+      username: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
     });
   }
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.token);
-        this.router.navigate(["special"]);
+        this.router.navigate(["sign-in"]);
       })
       .catch((err) => {
         console.log(err);

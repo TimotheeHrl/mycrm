@@ -9,7 +9,10 @@ const BACKEND_URL = environment.urlApi + "/api/auth/signin";
   providedIn: "root",
 })
 export class LoginService {
-  constructor(private http: HttpClient, private router: Router) {}
+  public token!: String;
+  constructor(private http: HttpClient, private router: Router) {
+    this.token = this.getToken()!;
+  }
 
   loginUser = async (obj: any) =>
     new Promise<any>((resolve, rejects) => {
@@ -44,8 +47,25 @@ export class LoginService {
     localStorage.removeItem("email");
     this.router.navigate(["signin"]);
   }
+
+  public getCookie(name: string) {
+    let ca: Array<string> = document.cookie.split(";");
+    console.log(document.cookie);
+    let caLen: number = ca.length;
+    let cookieName = `${name}=`;
+    let c: string;
+
+    for (let i: number = 0; i < caLen; i += 1) {
+      c = ca[i].replace(/^\s+/g, "");
+      if (c.indexOf(cookieName) == 0) {
+        return c.substring(cookieName.length, c.length);
+      }
+    }
+    return "";
+  }
   getToken() {
-    const cookie = document.getElementById("token");
-    return !!cookie?.textContent;
+    const cookie = this.getCookie("token");
+    console.log(cookie);
+    return cookie;
   }
 }

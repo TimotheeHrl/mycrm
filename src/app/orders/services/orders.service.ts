@@ -14,13 +14,8 @@ export class OrdersService {
   public orders$: Observable<Order[]>;
   private headersA!: HttpHeaders;
   constructor(private httpClient: HttpClient) {
-    this.headersA = new HttpHeaders({
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + this.token,
-    }); //JSON.parse(localStorage.getItem('mpManagerToken')
     this.orders$ = this.httpClient.get<Order[]>(
-      `${this.urlApi}/api/orders/all`,
-      { headers: this.headersA }
+      `${this.urlApi}/api/orders/all`
     );
   }
   public changeState(item: Order, state: StateOrder): Observable<Order> {
@@ -32,28 +27,20 @@ export class OrdersService {
   public update(item: Order): Observable<Order> {
     return this.httpClient.put<Order>(
       `${this.urlApi}/api/orders/update/${item.id}`,
-      item,
-      { headers: this.headersA }
+      item
     );
   }
 
   public add(item: Order): Observable<Order> {
-    return this.httpClient.post<Order>(`${this.urlApi}/api/orders/add`, item, {
-      headers: this.headersA,
-    });
+    return this.httpClient.post<Order>(`${this.urlApi}/api/orders/add`, item);
   }
   public delete(id: number): Observable<Order> {
     return this.httpClient.delete<Order>(
-      `${this.urlApi}/api/orders/delete/${id}`,
-      { headers: this.headersA }
+      `${this.urlApi}/api/orders/delete/${id}`
     );
   }
   public get(id: number): Observable<Order> {
-    this.order$ = this.httpClient.get<Order>(
-      `${this.urlApi}/api/orders/${id}`,
-      { headers: this.headersA }
-    );
-    console.log(this.order$);
+    this.order$ = this.httpClient.get<Order>(`${this.urlApi}/api/orders/${id}`);
 
     return this.order$;
   }

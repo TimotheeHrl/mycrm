@@ -8,6 +8,11 @@
                     <input formControlName="email" type="text">
                 </div>
                 <div class="flex-column">
+                    <label for="email">username</label>
+                    <input formControlName="username" type="text">
+                </div>
+
+                <div class="flex-column">
                     <label for="password">Password</label>
                     <input formControlName="password" type="password">
                 </div>
@@ -16,5 +21,8 @@
                 <button class="reg-btn" type="submit">Register</button>
             </div>
         </form>
+        <button class="login-btn">
+            <a routerLink="/sign-in" routerLinkActive="active" class="nav-link">sign-in</a>
+        </button>
     </div>
 </div>
