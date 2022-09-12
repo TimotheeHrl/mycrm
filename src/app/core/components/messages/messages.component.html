@@ -1,7 +1,23 @@
 <div id="messages">
-  <button class="btn btn-primary" (click)="onSendMessage()">
-    Send Test Message
-  </button>
+
+
+
+
+
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+
+    <div>
+      <label for="message">
+        message
+      </label>
+      <input id="message" type="text" formControlName="message" />
+    </div>
+
+    <button class="button" type="submit">envoyer</button>
+  </form>
+
+
+
   <h2>Received messages</h2>
   <ol>
     <!-- we will use Angular binding to populate list of messages -->

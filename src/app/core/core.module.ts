@@ -1,6 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule } from "@angular/router";
 import { IconsModule } from "../icons/icons.module";
 import { LoginModule } from "../login/login.module";
@@ -20,7 +22,13 @@ import { RxStompService } from "./stomp/rx-stomp.service";
     FooterComponent,
     MessagesComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   exports: [
     LoginModule,
     IconsModule,

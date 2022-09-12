@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
 import { IMessage } from "@stomp/stompjs";
 import { Subscription } from "rxjs";
 import { getTokenFunc } from "../../authServices/getTokenFunc";
@@ -13,7 +14,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   receivedMessages: ChatMessage[] = [];
   // @ts-ignore, to suppress warning related to being undefined
   private topicSubscription: Subscription;
-  constructor(private rxStompService: RxStompService) {}
+
+  constructor(
+    private rxStompService: RxStompService,
+    public formBuilder: FormBuilder
+  ) {}
+  checkoutForm = this.formBuilder.group({
+    message: "",
+  });
 
   ngOnInit() {
     this.topicSubscription = this.rxStompService
@@ -28,11 +36,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.topicSubscription.unsubscribe();
   }
 
-  onSendMessage() {
+  onSubmit() {
     const token = getTokenFunc();
     console.log(token);
     //add token to message
-    const messageText = `Message generated at ${new Date()}`;
+    const messageText = (document.getElementById("message") as HTMLInputElement)
+      .value;
     const message: ChatMessage = {
       text: messageText,
       username: "",
@@ -43,5 +52,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       body: JSON.stringify(message),
       headers: { token: getTokenFunc() },
     });
+    this.checkoutForm.reset();
   }
 }

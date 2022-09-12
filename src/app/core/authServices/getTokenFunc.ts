@@ -9,7 +9,7 @@ export function getTokenFunc(): string {
   for (let i: number = 0; i < caLen; i += 1) {
     c = ca[i].replace(/^\s+/g, "");
     if (c.indexOf(cookieName) == 0) {
-      return `Bearer ${c.substring(cookieName.length, c.length)}`;
+      return `${c.substring(cookieName.length, c.length)}`;
     }
   }
   return "";
