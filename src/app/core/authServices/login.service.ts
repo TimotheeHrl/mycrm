@@ -17,7 +17,6 @@ export class LoginService {
   loginUser = async (obj: any) =>
     new Promise<any>((resolve, rejects) => {
       const data: any = obj;
-      console.log(data);
 
       this.http.post<any>(BACKEND_URL, data).subscribe(
         (response: ResLoginI) => {
@@ -54,9 +53,7 @@ export class LoginService {
 
     for (let i: number = 0; i < caLen; i += 1) {
       c = ca[i].replace(/^\s+/g, "");
-      console.log(c);
       if (c.indexOf(cookieName) == 0) {
-        console.log(c.substring(cookieName.length, c.length));
         return c.substring(cookieName.length, c.length);
       }
     }
@@ -64,7 +61,6 @@ export class LoginService {
   }
   getToken() {
     const token = this.getCookie("token");
-    console.log(token);
     return token;
   }
 }

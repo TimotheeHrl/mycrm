@@ -1,16 +1,15 @@
-import { RxStompConfig } from '@stomp/rx-stomp';
-
+import { RxStompConfig } from "@stomp/rx-stomp";
+import { getTokenFunc } from "../authServices/getTokenFunc";
 export const myRxStompConfig: RxStompConfig = {
   // Which server?
-  brokerURL: 'ws://localhost:8080/chat-websocket',
+  brokerURL: "ws://localhost:8080/chat-websocket",
 
   // Headers
   // Typical keys: login, passcode, host
 
-  //connectHeaders: {
-  //  login: 'guest',
-  // passcode: 'guest',
-  // },
+  // connectHeaders: {
+  //  login: getTokenFunc(),
+  //},
 
   // How often to heartbeat?
   // Interval in milliseconds, set to 0 to disable
@@ -26,6 +25,7 @@ export const myRxStompConfig: RxStompConfig = {
   // It can be quite verbose, not recommended in production
   // Skip this key to stop logging to console
   debug: (msg: string): void => {
+    console.log(getTokenFunc());
     console.log(new Date(), msg);
   },
 };
