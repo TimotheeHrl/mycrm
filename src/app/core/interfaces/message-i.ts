@@ -1,5 +1,6 @@
+import { UserI } from "./user-i";
 export interface MessageI {
   text: string;
-  username: string;
-  avatar: string;
+  user: UserI;
+  date: Date;
 }

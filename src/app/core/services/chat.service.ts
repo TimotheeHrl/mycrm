@@ -1,11 +1,24 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-/**
- * Declaring SockJS and Stomp : check the assets/js folder and the index.html script section
- */
-
+import { BehaviorSubject } from "rxjs";
+import { environment } from "src/environments/environment";
+import { MessageI } from "../interfaces/message-i";
 @Injectable({
   providedIn: "root",
 })
 export class ChatService {
-  // Store the chat messages
+  private urlApi = environment.urlApi;
+  public messageGeneral$: BehaviorSubject<MessageI[]>;
+  constructor(private httpClient: HttpClient) {
+    this.messageGeneral$ = new BehaviorSubject<MessageI[]>([]);
+    this.refreshCollection();
+  }
+
+  public refreshCollection(): void {
+    this.httpClient
+      .get<MessageI[]>(`${this.urlApi}/api/chat/general`)
+      .subscribe((data) => {
+        this.messageGeneral$.next(data);
+      });
+  }
 }

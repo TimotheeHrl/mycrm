@@ -19,10 +19,27 @@
 
 
   <h2>Received messages</h2>
+
+  <!-- we will use Angular binding to populate list of messages -->
+  <div *ngIf="messagesFromGeneralChat !== null">
+    <ol>
+
+      <li class="message" *ngFor="let message of messagesFromGeneralChat">
+        <div>
+          <img src={{message.user.avatar}} alt={{message.user.username}} />
+          <p> from {{message.user.username}} : {{ message.text}} at {{message.date}} </p>
+        </div>
+      </li>
+    </ol>
+  </div>
   <ol>
+
     <!-- we will use Angular binding to populate list of messages -->
     <li class="message" *ngFor="let message of receivedMessages">
-      from {{message.username}} : {{ message.text}}
+      <div>
+        <img src={{message.user.avatar}} alt={{message.user.username}} />
+        <p> from {{message.user.username}} : {{ message.text}} at {{message.date}} </p>
+      </div>
     </li>
   </ol>
 </div>
