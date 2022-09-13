@@ -1,3 +1,4 @@
+import { CdkAccordionModule } from "@angular/cdk/accordion";
 import { CommonModule } from "@angular/common";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
@@ -13,14 +14,17 @@ import { FooterComponent } from "./components/footer/footer.component";
 import { HeaderComponent } from "./components/header/header.component";
 import { MessagesComponent } from "./components/messages/messages.component";
 import { NavComponent } from "./components/nav/nav.component";
+import { PageChatComponent } from "./page-chat/page-chat.component";
 import { rxStompServiceFactory } from "./services/rx-stomp-service-factory";
 import { RxStompService } from "./stomp/rx-stomp.service";
+
 @NgModule({
   declarations: [
     HeaderComponent,
     NavComponent,
     FooterComponent,
     MessagesComponent,
+    PageChatComponent,
   ],
   imports: [
     CommonModule,
@@ -28,6 +32,7 @@ import { RxStompService } from "./stomp/rx-stomp.service";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    CdkAccordionModule,
   ],
   exports: [
     LoginModule,
@@ -38,6 +43,7 @@ import { RxStompService } from "./stomp/rx-stomp.service";
     NavComponent,
     FooterComponent,
     MessagesComponent,
+    PageChatComponent,
   ],
   providers: [
     {

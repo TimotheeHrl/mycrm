@@ -15,7 +15,10 @@ export class MessagesComponent implements OnInit, OnDestroy {
   receivedMessages: ChatMessage[] = [];
   // @ts-ignore, to suppress warning related to being undefined
   private topicSubscription: Subscription;
-  public messagesFromGeneralChat!: MessageI[] | null;
+  public messagesFromGeneralChat!: MessageI[];
+  public expanded: boolean = false;
+  public lastMessage!: MessageI | null;
+
   constructor(
     private rxStompService: RxStompService,
     public formBuilder: FormBuilder,
@@ -24,6 +27,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.chatService.messageGeneral$.subscribe(
       (data) => (this.messagesFromGeneralChat = data)
     );
+    this.lastMessage =
+      this.messagesFromGeneralChat[this.messagesFromGeneralChat.length - 1];
   }
   checkoutForm = this.formBuilder.group({
     message: "",
@@ -34,7 +39,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
       .watch("/chat/messages")
       .subscribe((message: IMessage) => {
         const chatMessage: ChatMessage = JSON.parse(message.body);
+        this.messagesFromGeneralChat?.push(chatMessage);
         this.receivedMessages.push(chatMessage);
+        this.lastMessage = chatMessage;
       });
 
     console.log(this.messagesFromGeneralChat);
@@ -42,6 +49,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.topicSubscription.unsubscribe();
+  }
+  public displayMessage() {
+    this.expanded = !this.expanded;
   }
 
   onSubmit() {
