@@ -3,57 +3,111 @@
 
 
 
+  <button ngClass="closeChatButton" (click)="displayMessage()" *ngIf="expanded">
 
-  <cdk-accordion class="example-accordion" *ngIf="expanded">
+    general : close
+    <app-icon-close></app-icon-close>
+
+  </button>
+  <cdk-accordion class="example-accordion" *ngIf="expanded" ngClass="inboxContainer">
     <cdk-accordion-item *ngFor="let item of messagesFromGeneralChat; let index = index;"
-      #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+      #accordionItem="cdkAccordionItem" class="example-accordion-item" tabindex="0"
       [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="expanded"
       [attr.aria-controls]="'accordion-body-' + index">
-      <div class="example-accordion-item-header" (click)="displayMessage()">
-        {{ item.user.username }}
-        <span class="example-accordion-item-description">
-          Click to {{ expanded ? 'close' : 'open' }}
-        </span>
-      </div>
+
 
       <div class="example-accordion-item-body" role="region" [style.display]="expanded ? '' : 'none'"
         [attr.id]="'accordion-body-' + index" [attr.aria-labelledby]="'accordion-header-' + index">
-        <div>
-          <img src={{item.user.avatar}} alt={{item.user.username}} />
-          <p> from {{item.user.username}} : {{ item.text}} at {{item.date}} </p>
+        <div ngClass="messageContainer">
+
+          <img ngClass="picture" src={{item.user.avatar}} alt={{item.user.username}} />
+          <p style="padding: 10px;"> from {{item.user.username}} </p>
+
+          <p style="padding: 10px;"> at {{item.date}} </p>
+          <div>
+
+
+          </div>
         </div>
+        <p style="padding: 10px;"> {{ item.text}}</p>
+
       </div>
     </cdk-accordion-item>
+
+    <cdk-accordion-item>
+
+
+
+      <div>
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" (keydown)="onKeydownEnter($event)">
+
+          <div ngClass="messageContainer">
+
+            <textarea formControlName="message" id="message" name="message" rows="2" cols="40">
+            </textarea>
+            <button class="buttonSubmit" type="submit">envoyer</button>
+
+          </div>
+
+        </form>
+      </div>
+
+    </cdk-accordion-item>
+
   </cdk-accordion>
 
 </div>
 <div *ngIf="!expanded">
-  <cdk-accordion class="example-accordion">
-    <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
-      [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
-      <div class="example-accordion-item-header" (click)="displayMessage()">
-        {{ lastMessage?.user?.username }}
+  <div *ngIf="lastMessage?.user?.username === null">
+    <cdk-accordion class="example-accordion" ngClass="inboxContainerNotOpen">
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+        [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
+        <div class="example-accordion-item-header" (click)="displayMessage()">
 
-        <span class="example-accordion-item-description">
-          Click to {{ expanded ? 'close' : 'open' }}
-        </span>
-      </div>
+          chat general
 
-    </cdk-accordion-item>
-  </cdk-accordion>
+          <span class="example-accordion-item-description">
+            Click to {{ expanded ? 'close' : 'open' }}
+          </span>
+        </div>
 
-  <div>
-    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
-
-      <div>
-        <label for="message">
-          message
-        </label>
-        <input id="message" type="text" formControlName="message" />
-      </div>
-
-      <button class="button" type="submit">envoyer</button>
-    </form>
+      </cdk-accordion-item>
+    </cdk-accordion>
   </div>
+</div>
 
+<div *ngIf="!expanded">
+  <div *ngIf="lastMessage?.user?.username !== null">
+    <cdk-accordion *ngIf="hasUnreadMessage" class="example-accordion" ngClass="inboxContainerNotOpen">
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+        [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
+        <div class="example-accordion-item-header" (click)="displayMessage()">
+
+          {{ lastMessage?.user?.username }} {{ lastMessage?.text }}
+
+
+          <span class="example-accordion-item-description">
+            Click to {{ expanded ? 'close' : 'open' }}
+          </span>
+        </div>
+
+      </cdk-accordion-item>
+    </cdk-accordion>
+
+    <cdk-accordion *ngIf="!hasUnreadMessage" class="example-accordion" ngClass="inboxContainerNotOpen">
+      <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
+        [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
+        <div class="example-accordion-item-header-has-unread-messages" (click)="displayMessage()">
+
+          {{ lastMessage?.user?.username }} {{ lastMessage?.text }}
+
+
+          <span class="example-accordion-item-description">
+            Click to {{ expanded ? 'close' : 'open' }}
+          </span>
+        </div>
+
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </div>
 </div>

@@ -33,6 +33,7 @@ import { RxStompService } from "./stomp/rx-stomp.service";
     FormsModule,
     ReactiveFormsModule,
     CdkAccordionModule,
+    IconsModule,
   ],
   exports: [
     LoginModule,
