@@ -81,7 +81,7 @@
     <cdk-accordion *ngIf="hasUnreadMessage" class="example-accordion" ngClass="inboxContainerNotOpen">
       <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
         [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
-        <div class="example-accordion-item-header" (click)="displayMessage()">
+        <div class="example-accordion-item-header-has-unread-messages" (click)="displayMessage()">
 
           {{ lastMessage?.user?.username }} {{ lastMessage?.text }}
 
@@ -97,7 +97,7 @@
     <cdk-accordion *ngIf="!hasUnreadMessage" class="example-accordion" ngClass="inboxContainerNotOpen">
       <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button" tabindex="0"
         [attr.id]="'accordion-header-' " [attr.aria-expanded]="expanded" [attr.aria-controls]="'accordion-body-' ">
-        <div class="example-accordion-item-header-has-unread-messages" (click)="displayMessage()">
+        <div class="example-accordion-item-header" (click)="displayMessage()">
 
           {{ lastMessage?.user?.username }} {{ lastMessage?.text }}
 
