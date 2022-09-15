@@ -9,7 +9,28 @@
     <app-icon-close></app-icon-close>
 
   </button>
-  <cdk-accordion class="example-accordion" *ngIf="expanded" ngClass="inboxContainer">
+  <cdk-accordion class="example-accordion" *ngIf="expanded" id="messagesbox" ngClass="inboxContainer">
+
+    <cdk-accordion-item>
+
+
+
+      <div>
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" (keydown)="onKeydownEnter($event)">
+
+          <div ngClass="messageContainer">
+
+            <textarea formControlName="message" id="message" name="message" rows="2" cols="40">
+            </textarea>
+            <button class="buttonSubmit" type="submit">envoyer</button>
+
+          </div>
+
+        </form>
+        <div id="scroll-to-bottom"></div>
+      </div>
+
+    </cdk-accordion-item>
     <cdk-accordion-item *ngFor="let item of messagesFromGeneralChat; let index = index;"
       #accordionItem="cdkAccordionItem" class="example-accordion-item" tabindex="0"
       [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="expanded"
@@ -34,25 +55,6 @@
       </div>
     </cdk-accordion-item>
 
-    <cdk-accordion-item>
-
-
-
-      <div>
-        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" (keydown)="onKeydownEnter($event)">
-
-          <div ngClass="messageContainer">
-
-            <textarea formControlName="message" id="message" name="message" rows="2" cols="40">
-            </textarea>
-            <button class="buttonSubmit" type="submit">envoyer</button>
-
-          </div>
-
-        </form>
-      </div>
-
-    </cdk-accordion-item>
 
   </cdk-accordion>
 

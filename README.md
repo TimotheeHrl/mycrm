@@ -1,3 +1,5 @@
+docker run --rm -d -v ${PWD}/searx:/etc/searx -p 8888:8888 -e BASE_URL=http://localhost:8888/ searx/searx
+
 # Crm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.

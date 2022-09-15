@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     console.log("SUBMIT EXECUTED");
     console.log(this.loginForm.value);
+
     this.loginService
       .loginUser(this.loginForm.value)
       .then((res) => {

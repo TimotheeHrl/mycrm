@@ -6,12 +6,6 @@ export function rxStompServiceFactory() {
   rxStomp.configure(myRxStompConfig);
   rxStomp.activate();
 
-  this.stompClient.connect(
-    {},
-    function (frame) {
-      console.log("Connected: " + frame);
-    },
-    headers
-  );
+
   return rxStomp;
 }
